@@ -1,0 +1,34 @@
+{
+	"name": "tripomatic/nette-api",
+	"type": "library",
+	"description": "Build REST APIs with Nette Framework",
+	"keywords": ["nette", "api", "rest"],
+	"homepage": "https://github.com/tripomatic/nette-api",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Jan Jakes",
+			"email": "jan@jakes.pro"
+		}
+	],
+	"require": {
+		"php": ">=5.4.0",
+		"nette/application": "^2.3",
+		"nette/di": "^2.3",
+		"nette/http": "^2.3",
+		"nette/php-generator": "^2.3"
+	},
+	"require-dev": {
+	},
+	"autoload": {
+		"psr-4": {
+			"Tripomatic\\NetteApi": "src/"
+		}
+	},
+	"minimum-stability": "dev",
+	"extra": {
+		"branch-alias": {
+			"dev-master": "1.0-dev"
+		}
+	}
+}
