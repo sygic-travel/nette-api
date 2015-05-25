@@ -22,7 +22,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Tripomatic\\NetteApi": "src/"
+			"Tripomatic\\NetteApi\\": "src/"
 		}
 	},
 	"minimum-stability": "dev",
