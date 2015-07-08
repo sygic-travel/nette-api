@@ -17,17 +17,22 @@ class JsonResponse implements Application\IResponse
 	/** @var string */
 	private $contentType = 'application/json; charset=utf-8';
 
+	/** @var int */
+	private $expiration;
+
 	/** @var callable */
 	private $postProcessor;
 
 	/**
-	 * @param array|\stdClass $data
+	 * @param mixed[]|\stdClass $data
 	 * @param int $code
+	 * @param int|null $expiration
 	 */
-	public function __construct($data, $code = Http\IResponse::S200_OK)
+	public function __construct($data, $code = Http\IResponse::S200_OK, $expiration = null)
 	{
 		$this->data = $data;
 		$this->code = $code;
+		$this->expiration = $expiration;
 	}
 
 	/**
@@ -37,8 +42,9 @@ class JsonResponse implements Application\IResponse
 	public function send(Http\IRequest $httpRequest, Http\IResponse $httpResponse)
 	{
 		$httpResponse->setContentType($this->contentType);
-		$httpResponse->setExpiration(FALSE);
 		$httpResponse->setCode($this->code);
+		$httpResponse->setExpiration($this->expiration);
+		$httpResponse->setHeader('Pragma', $this->expiration ? 'cache': 'no-cache');
 
 		$response = Json::encode($this->data, Json::PRETTY);
 		if (is_callable($this->postProcessor)) {
@@ -93,6 +99,22 @@ class JsonResponse implements Application\IResponse
 	public function setContentType($contentType)
 	{
 		$this->contentType = $contentType;
+	}
+
+	/**
+	 * @param int|null $expiration
+	 */
+	public function setExpiration($expiration)
+	{
+		$this->expiration = $expiration;
+	}
+
+	/**
+	 * @return int|null
+	 */
+	public function getExpiration()
+	{
+		return $this->expiration;
 	}
 
 	/**
