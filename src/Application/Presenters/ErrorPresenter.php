@@ -81,11 +81,11 @@ class ErrorPresenter implements IPresenter
 
 	/**
 	 * @param Request $request
-	 * @return JsonResponse
+	 * @return IResponse
 	 */
 	public function run(Request $request)
 	{
-		$e = $request->parameters['exception'];
+		$e = $request->getParameter('exception');
 		if ($e instanceof BadRequestException) {
 			$code = $e->getCode();
 		} else {
@@ -99,7 +99,7 @@ class ErrorPresenter implements IPresenter
 			}
 		}
 
-		if (array_key_exists($code, self::$errors)) {
+		if (isset(self::$errors[$code])) {
 			$message = self::$errors[$code];
 		} else {
 			$message = 'Unknown error';

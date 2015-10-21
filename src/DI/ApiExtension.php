@@ -28,13 +28,12 @@ class ApiExtension extends CompilerExtension
 	public function afterCompile(PhpGenerator\ClassType $class)
 	{
 		$config = $this->getConfig(self::$configDefaults);
-		$initialize = $class->methods['initialize'];
+		$initialize = $class->getMethod('initialize');
 
-		// response syntax highliting in debug mode
+		// response syntax highlighting in debug mode
 		if ($config['debugMode'] == TRUE) {
 			$initialize->addBody('$this->getService(?)->onResponse[] = [new Tripomatic\NetteApi\Application\ResponseProcessors\ResponseDecorator, "process"];', [
 				'application.application',
-				$this->prefix('assetManager'),
 			]);
 		}
 	}
