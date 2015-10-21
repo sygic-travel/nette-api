@@ -30,7 +30,7 @@ class ApiExtension extends CompilerExtension
 		$config = $this->getConfig(self::$configDefaults);
 		$initialize = $class->getMethod('initialize');
 
-		// response syntax highliting in debug mode
+		// response syntax highlighting in debug mode
 		if ($config['debugMode'] == TRUE) {
 			$initialize->addBody('$this->getService(?)->onResponse[] = [new Tripomatic\NetteApi\Application\ResponseProcessors\ResponseDecorator, "process"];', [
 				'application.application',

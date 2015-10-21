@@ -81,7 +81,7 @@ class ErrorPresenter implements IPresenter
 
 	/**
 	 * @param Request $request
-	 * @return JsonResponse
+	 * @return IResponse
 	 */
 	public function run(Request $request)
 	{
