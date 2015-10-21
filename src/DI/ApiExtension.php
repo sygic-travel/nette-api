@@ -28,7 +28,7 @@ class ApiExtension extends CompilerExtension
 	public function afterCompile(PhpGenerator\ClassType $class)
 	{
 		$config = $this->getConfig(self::$configDefaults);
-		$initialize = $class->methods['initialize'];
+		$initialize = $class->getMethod('initialize');
 
 		// response syntax highliting in debug mode
 		if ($config['debugMode'] == TRUE) {

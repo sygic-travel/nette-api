@@ -85,7 +85,7 @@ class ErrorPresenter implements IPresenter
 	 */
 	public function run(Request $request)
 	{
-		$e = $request->parameters['exception'];
+		$e = $request->getParameter('exception');
 		if ($e instanceof BadRequestException) {
 			$code = $e->getCode();
 		} else {
