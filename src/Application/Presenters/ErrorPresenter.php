@@ -99,7 +99,7 @@ class ErrorPresenter implements IPresenter
 			}
 		}
 
-		if (array_key_exists($code, self::$errors)) {
+		if (isset(self::$errors[$code])) {
 			$message = self::$errors[$code];
 		} else {
 			$message = 'Unknown error';
