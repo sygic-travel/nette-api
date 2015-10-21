@@ -34,7 +34,6 @@ class ApiExtension extends CompilerExtension
 		if ($config['debugMode'] == TRUE) {
 			$initialize->addBody('$this->getService(?)->onResponse[] = [new Tripomatic\NetteApi\Application\ResponseProcessors\ResponseDecorator, "process"];', [
 				'application.application',
-				$this->prefix('assetManager'),
 			]);
 		}
 	}
