@@ -160,7 +160,7 @@ class JsonResponse implements Application\IResponse
 		$httpResponse->setExpiration($this->expiration);
 		$httpResponse->setHeader('Pragma', $this->expiration ? 'cache': 'no-cache');
 
-		$response = Json::encode($this->data, Json::PRETTY);
+		$response = Json::encode($this->data);
 		if (is_callable($this->postProcessor)) {
 			$response = call_user_func($this->postProcessor, $response);
 		}
